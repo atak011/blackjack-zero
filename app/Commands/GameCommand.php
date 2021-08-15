@@ -56,7 +56,7 @@ class GameCommand extends Command
         $delay = null;
         try {
             $playerName = $this->askValid('Whats your name?', 'string');
-            $delay = $this->askValid('how long should we wait after end', 'int');
+            $delay = $this->askValid('How long should we wait after end', 'int');
         }catch (Exception $ex){
             $this->error('Wrong Input Please Check Your Inputs');
             exit();
@@ -91,8 +91,6 @@ class GameCommand extends Command
     public function play($playerName): bool
     {
         $choice = null;
-        $dealerHand = [];
-        $playerHand = [];
         // initialize deck
         $deck = $this->cardService::prepareCards();
 
