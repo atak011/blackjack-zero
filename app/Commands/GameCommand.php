@@ -113,12 +113,12 @@ class GameCommand extends Command
             }
 
             if ($this->cardService::calculateHand($dealerHand) == 21) {
-                $this->comment("Dealer Won !");
+                $this->comment("Dealer Won ! Hand: {$this->gameService::getHandDetailedArray($dealerHand)}" );
                 return false;
             }
 
             elseif ($this->cardService::calculateHand($playerHand) == 21) {
-                $this->comment("BlackJack! {$playerName} Win!");
+                $this->comment("BlackJack! {$playerName} Win! Hand: {$this->gameService::getHandDetailedArray($playerHand)}");
                 return true;
             }
             // Waiting Player Choice Stay Or Hit
@@ -141,7 +141,7 @@ class GameCommand extends Command
                 $this->comment("Dealer Busted !");
                 return true;
             } elseif ($this->cardService::calculateHand($dealerHand) == 21) {
-                $this->comment("Dealer BlackJack ,  Dealer Won !");
+                $this->comment("Dealer BlackJack ,  Dealer Won ! Hand: {$this->gameService::getHandDetailedArray($dealerHand)}");
                 return false;
             } elseif ($this->cardService::calculateHand($dealerHand) < 17) {
                 $dealerHand[] = array_pop($deck);
@@ -150,11 +150,11 @@ class GameCommand extends Command
                 $this->info("Value : ". $this->cardService::calculateHand($dealerHand));
             } else {
                 if ($this->cardService::calculateHand($dealerHand) >= $this->cardService::calculateHand($playerHand)) {
-                    $this->comment("Dealer Win !");
+                    $this->comment("Dealer Win ! Hand: {$this->gameService::getHandDetailedArray($dealerHand)}");
                     return false;
                 }
                 else {
-                    $this->comment("{$playerName} Win !");
+                    $this->comment("{$playerName} Win ! Hand: {$this->gameService::getHandDetailedArray($playerHand)}");
                     return true;
                 }
             }
